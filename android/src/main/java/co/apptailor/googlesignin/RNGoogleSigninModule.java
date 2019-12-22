@@ -281,21 +281,21 @@ public class RNGoogleSigninModule extends ReactContextBaseJavaModule implements 
         int size = scopes.size();
         Scope[] _scopes = new Scope[size];
 
-        if(scopes != null && size > 0){
-            for(int i = 0; i < size; i++){
-                if(scopes.getType(i).name().equals("String")){
-                    String scope = scopes.getString(i);
-                    if (!scope.equals("https://mail.google.com/")){ // will be added by default
-                        _scopes[i] = new Scope(scope);
-                    }
-                }
-            }
-        }
+//         if(scopes != null && size > 0){
+//             for(int i = 0; i < size; i++){
+//                 if(scopes.getType(i).name().equals("String")){
+//                     String scope = scopes.getString(i);
+//                     if (!scope.equals("https://mail.google.com/")){ // will be added by default
+//                         _scopes[i] = new Scope(scope);
+//                     }
+//                 }
+//             }
+//         }
         GoogleSignInOptions.Builder googleSignInOptionsBuilder;
         if(_scopes.length > 1) {
-            googleSignInOptionsBuilder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(new Scope("https://mail.google.com/"), _scopes);
+            googleSignInOptionsBuilder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(_scopes);
         }else {
-            googleSignInOptionsBuilder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(new Scope("https://mail.google.com/"));
+            googleSignInOptionsBuilder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes();
         }
         if (webClientId != null && !webClientId.isEmpty()) {
             if (!offlineAcess) {
